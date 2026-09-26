@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delete Your Account — E.A.T. (Eats Around Town)</title>
+<style>
+  :root {
+    --bg: #060A06;
+    --surface: #0D140D;
+    --card: #101810;
+    --border: #1E2E1E;
+    --neon: #39FF6A;
+    --neon-deep: #16C24B;
+    --text: #EAFBEF;
+    --text-secondary: #8FA894;
+    --text-muted: #5A6E5D;
+    --danger: #FF4B4B;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--neon); text-decoration: none; }
+  a:hover, a:focus-visible { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--neon); outline-offset: 2px; border-radius: 2px; }
+
+  header {
+    padding: 56px 24px 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mark {
+    font-size: 34px;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: 1px;
+    color: var(--neon);
+    text-shadow: 0 0 24px rgba(57, 255, 106, 0.45);
+    margin: 0;
+  }
+
+  .tagline {
+    margin: 4px 0 0;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--text-secondary);
+  }
+
+  .operator {
+    margin: 10px 0 0;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+
+  h1 {
+    font-size: 26px;
+    font-weight: 800;
+    margin: 0 0 6px;
+  }
+
+  .meta {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin: 0 0 40px;
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  p { margin: 0 0 14px; color: var(--text); }
+  p.lead { color: var(--text-secondary); }
+
+  ul, ol { padding-left: 22px; margin: 0 0 14px; }
+  li { margin-bottom: 8px; }
+
+  .steps {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 8px 24px 8px;
+    counter-reset: step;
+    margin-bottom: 14px;
+  }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step-number {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--neon);
+    color: #000;
+    font-weight: 800;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-body h3 {
+    margin: 0 0 4px;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .step-body p {
+    margin: 0;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  .email-box {
+    display: block;
+    background: rgba(57, 255, 106, 0.08);
+    border: 1px solid var(--neon);
+    border-radius: 12px;
+    padding: 14px 18px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--neon);
+    margin: 0 0 14px;
+    word-break: break-all;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 14px;
+    font-size: 13px;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  th {
+    background: var(--surface);
+    color: var(--text-secondary);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .callout {
+    background: rgba(57, 255, 106, 0.06);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--neon);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 0 0 14px;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+  }
+
+  .callout.warning {
+    border-left-color: var(--danger);
+    background: rgba(255, 75, 75, 0.06);
+  }
+
+  .placeholder {
+    background: rgba(255, 194, 75, 0.12);
+    border: 1px dashed #FFC24B;
+    color: #FFC24B;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px 56px;
+    color: var(--text-muted);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="mark">E.A.T.</p>
+  <p class="tagline">EATS AROUND TOWN</p>
+  <p class="operator">Operated by Camargos World Inc</p>
+</header>
+
+<main>
+  <h1>Delete Your Account</h1>
+  <p class="meta">Last updated: <span class="placeholder">[insert date you publish this]</span></p>
+
+  <section>
+    <p class="lead">
+      This page explains how to request deletion of your E.A.T. (Eats Around Town) account and
+      associated data, whether you're a customer or a vendor. You do not need to have the app
+      installed to make this request.
+    </p>
+  </section>
+
+  <section>
+    <h2>How to request deletion</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-body">
+          <h3>Email us your deletion request</h3>
+          <p>Send an email from the address associated with your E.A.T. account to the address below.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-body">
+          <h3>Include the details listed further down this page</h3>
+          <p>This helps us find your account quickly and confirm it's really you asking.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-body">
+          <h3>We confirm and process your request</h3>
+          <p>We'll reply to confirm we've received it, and let you know once deletion is complete.</p>
+        </div>
+      </div>
+    </div>
+
+    <a class="email-box" href="mailto:info@camargosworld.com?subject=Account%20Deletion%20Request">
+      info@camargosworld.com
+    </a>
+
+    <p style="text-align:center; font-size: 12.5px; color: var(--text-muted); margin-top: -6px;">
+      Use the subject line "Account Deletion Request" so it reaches us quickly.
+    </p>
+  </section>
+
+  <section>
+    <h2>What to include in your request</h2>
+    <p>To help us locate and verify your account, please include:</p>
+    <ul>
+      <li>The <strong>full name</strong> on your account</li>
+      <li>The <strong>email address</strong> you signed up with</li>
+      <li>Whether you're a <strong>customer</strong> or a <strong>vendor</strong></li>
+      <li>If you're a vendor, your <strong>business name</strong> as it appears in the app</li>
+    </ul>
+    <div class="callout">
+      We only use these details to find and confirm your account — see our
+      <a href="#" target="_blank" rel="noopener">Privacy Policy</a> for how we handle information
+      generally.
+    </div>
+  </section>
+
+  <section>
+    <h2>What happens to your data</h2>
+    <p>Once we verify your request, here's exactly what happens to each type of data we hold:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Data type</th>
+          <th>What happens</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Account &amp; profile<br><span style="color:var(--text-muted)">name, email, phone, profile photo</span></td>
+          <td>Permanently deleted from our active database within <strong>7 days</strong> of your confirmed request.</td>
+        </tr>
+        <tr>
+          <td>Vendor storefront<br><span style="color:var(--text-muted)">business name, description, photos, hours</span></td>
+          <td>Removed from public view immediately upon request, then permanently deleted within <strong>7 days</strong>.</td>
+        </tr>
+        <tr>
+          <td>Location data<br><span style="color:var(--text-muted)">live/last-known position</span></td>
+          <td>We only ever keep your most recent position, never a history — this is deleted immediately along with your account, no separate retention period.</td>
+        </tr>
+        <tr>
+          <td>Chat messages</td>
+          <td>Deleted within <strong>7 days</strong>. Note: this may also remove your messages from the other person's view of a shared conversation.</td>
+        </tr>
+        <tr>
+          <td>Reports you filed against a vendor</td>
+          <td>Deleted within <strong>7 days</strong>, unless a report is part of an active moderation case, in which case it's kept only until that case closes, then deleted.</td>
+        </tr>
+        <tr>
+          <td>Reports filed against you (if you're a vendor)</td>
+          <td>Kept for up to <strong>90 days</strong> for safety and moderation record-keeping, then deleted, unless required for longer to resolve an active dispute or legal obligation.</td>
+        </tr>
+        <tr>
+          <td>Backups</td>
+          <td>Any copy of your data in routine system backups is purged within <strong>30 days</strong> as those backups naturally cycle out.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout warning">
+      <strong>This can't be undone.</strong> Once your data is deleted, we cannot recover your
+      account, conversations, or vendor listing.
+    </div>
+  </section>
+
+  <section>
+    <h2>How long the whole process takes</h2>
+    <p>
+      We aim to confirm we've received your request within <strong>2 business days</strong>, and to
+      complete deletion within <strong>7 days</strong> of confirming your identity, except where this
+      page states a longer retention period for a specific data type above.
+    </p>
+  </section>
+
+  <section>
+    <h2>Questions</h2>
+    <p>
+      If you have questions about this process or what data we hold, contact us at
+      <a href="mailto:info@camargosworld.com">info@camargosworld.com</a> — the same address handles
+      general privacy questions and deletion requests alike.
+    </p>
+  </section>
+</main>
+
+<footer>
+  E.A.T. — Eats Around Town, operated by Camargos World Inc
+</footer>
+
+</body>
+</html>
